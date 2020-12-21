@@ -1,6 +1,3 @@
-# Senet-VR
-VR experience in Unity for Senet's game
-
 # SENET VR
 
 _Project for the Advanced Interactive Environments Project_
