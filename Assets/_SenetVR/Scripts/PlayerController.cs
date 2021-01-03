@@ -129,7 +129,9 @@ public class PlayerController : MonoBehaviour
         torch.GetComponent<Rigidbody>().isKinematic = true;
 
         // Moving torch in a nice position
-        torch.transform.position = this.transform.position + new Vector3(0.5f, -0.6f, 1.8f);
+        torch.transform.position = this.transform.position + new Vector3(0.77f, -0.68f, 0.83f);
+        // Rotating a little bit the torch
+        torch.transform.Rotate(0f,0f,14f);
 
         // Chaging player state
         _state = PlayerStates.HoldingTorch;
