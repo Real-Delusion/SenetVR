@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
         // Grabbing/Dropping an object
         if (Input.GetKeyDown("e"))
         {
-            //Debug.Log(grabDistance);
             if (torch != null)
             {
                 // The player has already the torch
@@ -100,7 +99,7 @@ public class PlayerController : MonoBehaviour
                     Vector3 dir = (torch.transform.position - transform.position).normalized;
                     float dot = Vector3.Dot(dir, transform.forward);
 
-                    // Debug.Log(dot);
+                    Debug.Log(dot);
 
                     // dot is closer to 1 --> the player is looking at the object
                     // dot  is closer to 0 --> the player is looking away
@@ -117,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     void Grab()
     {
-        //Debug.Log("Grab");
+        Debug.Log("Grab");
 
         // Chaging player state
         _state = PlayerStates.Grab;
@@ -129,7 +128,7 @@ public class PlayerController : MonoBehaviour
         torch.GetComponent<Rigidbody>().isKinematic = true;
 
         // Moving torch in a nice position
-        torch.transform.position = this.transform.position + new Vector3(0.77f, -0.68f, 0.83f);
+        torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
         // Rotating a little bit the torch
         torch.transform.Rotate(0f,0f,14f);
 
@@ -141,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     void Drop()
     {
-        //Debug.Log("Drop");
+        Debug.Log("Drop");
 
         // Chaging player state
         _state = PlayerStates.Drop;
