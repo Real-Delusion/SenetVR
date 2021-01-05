@@ -27,6 +27,7 @@ public class CameraPointer : MonoBehaviour
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
 
+    public RaycastHit hit;
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
@@ -34,7 +35,7 @@ public class CameraPointer : MonoBehaviour
     {
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
-        RaycastHit hit;
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {
             // GameObject detected in front of the camera.

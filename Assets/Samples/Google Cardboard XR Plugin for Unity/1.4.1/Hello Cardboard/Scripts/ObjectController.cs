@@ -18,12 +18,14 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Controls target objects behaviour.
 /// </summary>
 public class ObjectController : MonoBehaviour
 {
+    [Header("Materials to detection")]
     /// <summary>
     /// The material to use when this object is inactive (not being gazed at).
     /// </summary>
@@ -34,11 +36,19 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public Material GazedAtMaterial;
 
+    // Player
+    private GameObject player;
+
+    // Event systems
+    [Header("Actions Events System")]
+    public UnityEvent ActiveAction;
+    public UnityEvent InactiveAction;
+
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
     // across).
-    private const float _minObjectDistance = 2.5f;
-    private const float _maxObjectDistance = 3.5f;
+    private const float _minObjectDistance = 0.5f;
+    private const float _maxObjectDistance = 1.5f;
     private const float _minObjectHeight = 0.5f;
     private const float _maxObjectHeight = 3.5f;
 
@@ -53,6 +63,8 @@ public class ObjectController : MonoBehaviour
         _startingPosition = transform.localPosition;
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     /// <summary>
@@ -85,7 +97,9 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerEnter()
     {
+        player.GetComponent<UIplayerController>().TogglePointerMode(true);
         SetMaterial(true);
+        ActiveAction.Invoke();
     }
 
     /// <summary>
@@ -93,7 +107,9 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerExit()
     {
+        player.GetComponent<UIplayerController>().TogglePointerMode(false);
         SetMaterial(false);
+        InactiveAction.Invoke();
     }
 
     /// <summary>
