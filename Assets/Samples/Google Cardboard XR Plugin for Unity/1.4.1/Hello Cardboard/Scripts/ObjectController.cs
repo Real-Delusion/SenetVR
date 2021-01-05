@@ -18,6 +18,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Controls target objects behaviour.
@@ -34,11 +35,14 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public Material GazedAtMaterial;
 
+    public UnityEvent ActiveAction;
+    public UnityEvent InactiveAction;
+
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
     // across).
-    private const float _minObjectDistance = 2.5f;
-    private const float _maxObjectDistance = 3.5f;
+    private const float _minObjectDistance = 0.5f;
+    private const float _maxObjectDistance = 1.5f;
     private const float _minObjectHeight = 0.5f;
     private const float _maxObjectHeight = 3.5f;
 
@@ -53,6 +57,11 @@ public class ObjectController : MonoBehaviour
         _startingPosition = transform.localPosition;
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
+
+        if (ActiveAction == null)
+            ActiveAction = new UnityEvent();
+        if (InactiveAction == null)
+            InactiveAction = new UnityEvent();
     }
 
     /// <summary>
@@ -86,6 +95,7 @@ public class ObjectController : MonoBehaviour
     public void OnPointerEnter()
     {
         SetMaterial(true);
+        ActiveAction.Invoke();
     }
 
     /// <summary>
@@ -94,6 +104,7 @@ public class ObjectController : MonoBehaviour
     public void OnPointerExit()
     {
         SetMaterial(false);
+        InactiveAction.Invoke();
     }
 
     /// <summary>
