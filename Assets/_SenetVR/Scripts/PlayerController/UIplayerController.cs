@@ -26,7 +26,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextTeleport(bool state)
     {
-        textPointer.text = "Press E to move";
+        textPointer.text = "Press Fire to move";
         if (state)
         {
             textPointer.rectTransform.DOScale(new Vector3(1, 1, 1), .3f);
