@@ -25,6 +25,7 @@ using UnityEngine.Events;
 /// </summary>
 public class ObjectController : MonoBehaviour
 {
+    [Header("Materials to detection")]
     /// <summary>
     /// The material to use when this object is inactive (not being gazed at).
     /// </summary>
@@ -36,9 +37,10 @@ public class ObjectController : MonoBehaviour
     public Material GazedAtMaterial;
 
     // Player
-    public GameObject player;
+    private GameObject player;
 
     // Event systems
+    [Header("Actions Events System")]
     public UnityEvent ActiveAction;
     public UnityEvent InactiveAction;
 
@@ -61,6 +63,8 @@ public class ObjectController : MonoBehaviour
         _startingPosition = transform.localPosition;
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     /// <summary>

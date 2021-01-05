@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [Header("Scripts")]
     [SerializeField]
     private CameraPointer cameraPointer;
+    [SerializeField]
+    private UIplayerController uIplayerController;
 
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
@@ -81,12 +83,16 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
+        uIplayerController = GetComponent<UIplayerController>();
+
+        cameraPointer = GetComponentInChildren<CameraPointer>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //Debug.Log("STATE: " + _state);
+        Debug.Log("STATE: " + _state);
 
         // Player movement with keyboard (ONLY FOR TESTING)
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -124,10 +130,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetButtonDown("Fire1") && _state == PlayerStates.Teleport)
         {
-            _state = PlayerStates.Teleport;
-            transform.position = cameraPointer.hit.point;
+            Vector3 hitPoint = cameraPointer.hit.point;
+            transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
             Debug.Log(cameraPointer.hit.point);
         }
 
@@ -205,6 +211,23 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Movement teleport
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public void EnableModeTeleport()
+    {
+        uIplayerController.ToggleTextTeleport(true);
+        _state = PlayerStates.Teleport;
+    }
+
+    public void DisableModeTeleport()
+    {
+        uIplayerController.ToggleTextTeleport(false);
+        _state = PlayerStates.Idle;
+    }
+    
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
 }
