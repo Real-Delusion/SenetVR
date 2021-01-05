@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Scripts
+    [Header("Scripts")]
+    [SerializeField]
+    private CameraPointer cameraPointer;
 
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
@@ -12,6 +16,7 @@ public class PlayerController : MonoBehaviour
         Grab,
         Drop,
         HoldingTorch,
+        Teleport,
 
     }
 
@@ -47,6 +52,13 @@ public class PlayerController : MonoBehaviour
             {
 
             }
+
+            // If the state is Teleport
+            if (_state == PlayerStates.Teleport)
+            {
+
+            }
+
 
         }
     }
@@ -110,6 +122,13 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _state = PlayerStates.Teleport;
+            transform.position = cameraPointer.hit.point;
+            Debug.Log(cameraPointer.hit.point);
         }
 
     }

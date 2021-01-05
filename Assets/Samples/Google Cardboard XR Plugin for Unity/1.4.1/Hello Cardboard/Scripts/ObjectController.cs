@@ -35,6 +35,10 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public Material GazedAtMaterial;
 
+    // Player
+    public GameObject player;
+
+    // Event systems
     public UnityEvent ActiveAction;
     public UnityEvent InactiveAction;
 
@@ -57,11 +61,6 @@ public class ObjectController : MonoBehaviour
         _startingPosition = transform.localPosition;
         _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
-
-        if (ActiveAction == null)
-            ActiveAction = new UnityEvent();
-        if (InactiveAction == null)
-            InactiveAction = new UnityEvent();
     }
 
     /// <summary>
@@ -94,6 +93,7 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerEnter()
     {
+        player.GetComponent<UIplayerController>().TogglePointerMode(true);
         SetMaterial(true);
         ActiveAction.Invoke();
     }
@@ -103,6 +103,7 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerExit()
     {
+        player.GetComponent<UIplayerController>().TogglePointerMode(false);
         SetMaterial(false);
         InactiveAction.Invoke();
     }
