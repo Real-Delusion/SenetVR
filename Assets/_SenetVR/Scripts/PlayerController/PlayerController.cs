@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         Drop,
         HoldingTorch,
         Teleport,
+        LightCaliz,
 
     }
 
@@ -73,6 +74,8 @@ public class PlayerController : MonoBehaviour
     // Between 0 and 1;
     public float lookingAccuracy = 0.85f;
 
+    public GameObject caliz;
+
     private GameObject torch;
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("STATE: " + _state);
+        //Debug.Log("STATE: " + _state);
 
         // Player movement with keyboard (ONLY FOR TESTING)
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -130,6 +133,29 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown("q") && _state == PlayerStates.LightCaliz)
+        {
+            caliz.transform.GetChild(1).gameObject.SetActive(true);
+        }
+
+        if (Input.GetKeyDown("f") && _state == PlayerStates.Grab)
+        {
+            // grab it --> the torch tag object now is the child
+            torch.transform.parent = this.transform;
+
+            // Desabling physics on Rigidbody
+            torch.GetComponent<Rigidbody>().isKinematic = true;
+
+            // Moving torch in a nice position
+            torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
+
+            // Rotating a little bit the torch
+            torch.transform.Rotate(0f, 0f, 14f);
+
+            // Chaging player state
+            _state = PlayerStates.HoldingTorch;
+        }
+
         if (Input.GetButtonDown("Fire1") && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
@@ -139,27 +165,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Grab()
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Torch
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    public void Grab()
     {
         Debug.Log("Grab");
 
+        uIplayerController.ToggleTextTeleport(true);
+
         // Chaging player state
         _state = PlayerStates.Grab;
-
-        // grab it --> the torch tag object now is the child
-        torch.transform.parent = this.transform;
-
-        // Desabling physics on Rigidbody
-        torch.GetComponent<Rigidbody>().isKinematic = true;
-
-        // Moving torch in a nice position
-        torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
-        // Rotating a little bit the torch
-        torch.transform.Rotate(0f,0f,14f);
-
-        // Chaging player state
-        _state = PlayerStates.HoldingTorch;
-
 
     }
 
@@ -197,6 +213,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(col.gameObject.tag == "Caliz" && _state == PlayerStates.HoldingTorch)
+        {
+            caliz = col.gameObject;
+        }
+
     }
 
     void OnTriggerExit(Collider col)
@@ -210,6 +231,23 @@ public class PlayerController : MonoBehaviour
                 torch = null;
             }
         }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Lighting caliz
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    public void LightCaliz()
+    {
+        uIplayerController.ToggleTextTeleport(true);
+        _state = PlayerStates.LightCaliz;
+    }
+
+    public void PutOutCaliz()
+    {
+        uIplayerController.ToggleTextTeleport(false);
+        _state = PlayerStates.Idle;
     }
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
