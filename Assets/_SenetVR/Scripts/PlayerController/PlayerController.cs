@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log("STATE: " + _state);
+        Debug.Log("STATE: " + _state);
 
         // Player movement with keyboard (ONLY FOR TESTING)
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
