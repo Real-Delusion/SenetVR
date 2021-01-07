@@ -16,37 +16,31 @@ public class LightingCalices : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(waitSeconds(1));
-        LightCalices2();
+     
     }
 
-    private IEnumerator waitSeconds(int seconds)
+    public void StartLightingCalices()
     {
-        LightCalices();
-        yield return new WaitForSeconds(seconds);
+        StartCoroutine(LightCalices(1.3f));
     }
 
-    private IEnumerator waitSeconds2(int seconds)
+    private IEnumerator LightCalices(float seconds)
     {
-        LightCalices2();
-        yield return new WaitForSeconds(seconds);
-    }
+        for(int i = 0; i < calices.Count ; i++)
+        {
+            calices[i].transform.GetChild(1).gameObject.SetActive(true);
+            i++;
 
-    private void LightCalices()
-    {
-        calices[0].transform.GetChild(1).gameObject.SetActive(true);
-        calices[1].transform.GetChild(1).gameObject.SetActive(true);
-
-
-
-    }
-
-    private void LightCalices2()
-    {
-        calices[2].transform.GetChild(1).gameObject.SetActive(true);
-        calices[3].transform.GetChild(1).gameObject.SetActive(true);
-
-
+            if(i != calices.Count)
+            {
+                calices[i].transform.GetChild(1).gameObject.SetActive(true);
+                yield return new WaitForSeconds(seconds);
+            }
+            
+        }
 
     }
+
+
+
 }
