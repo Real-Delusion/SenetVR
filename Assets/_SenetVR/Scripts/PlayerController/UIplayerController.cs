@@ -29,7 +29,7 @@ public class UIplayerController : MonoBehaviour
         textPointer.text = "Press Fire to move";
         if (state)
         {
-            textPointer.rectTransform.DOScale(new Vector3(1, 1, 1), .3f);
+            textPointer.rectTransform.DOScale(new Vector3(.1f, .1f, .1f), .3f);
         }
         else
         {
