@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Observe
-        if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
+        if (Input.GetKeyDown("q") || Input.GetKey(KeyCode.Joystick1Button0) && _state == PlayerStates.Observe)
         {
             _state = PlayerStates.Observing;
         }
