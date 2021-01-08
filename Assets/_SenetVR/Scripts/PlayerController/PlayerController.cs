@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
         Teleport,
         LightCaliz,
         EnterDoor,
-        Observe
+        Observe,
+        Observing
     }
 
     private PlayerStates _state = PlayerStates.Idle;
@@ -75,13 +76,15 @@ public class PlayerController : MonoBehaviour
     // Between 0 and 1;
     public float lookingAccuracy = 0.85f;
 
-    public GameObject hooaaaaaa;
-
     private GameObject caliz;
     private GameObject torch;
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private bool holdingTorch = false;
+
+    public Transform target;
+    private Vector3 velocity = Vector3.zero;
+    public float smoothTime = 1F;
 
 
     // Start is called before the first frame update
@@ -174,174 +177,189 @@ public class PlayerController : MonoBehaviour
 
         }
 
+
         // Observe
         if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
         {
+            _state = PlayerStates.Observing;
+        }
+
+        if(_state == PlayerStates.Observing)
+        {
+            //Debug.Log("Observing");
             // Disable player controls
             this.transform.GetChild(0).gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
 
-            // Observe jeroglificos
+            // Define a target position above and behind the target transform
+            Vector3 targetPosition = target.TransformPoint(target.transform.position - new Vector3(0f,0f,10f));
 
-            
+            // Smoothly move the camera towards that target position
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-        }
-
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Torch
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableGrab()
-    {
-        uIplayerController.ToggleTextGrab(true);
-
-        // Chaging player state
-        _state = PlayerStates.Grab;
-
-    }
-
-    public void DisableGrab()
-    {
-
-        uIplayerController.ToggleTextGrab(false);
-
-        // Chaging player state
-        _state = PlayerStates.Idle;
-
-    }
-
-    void Drop()
-    {
-        Debug.Log("Drop");
-
-        // Chaging player state
-        _state = PlayerStates.Drop;
-
-        // the torch is not the child anymore
-        torch.transform.parent = null;
-
-        // Enabling physics on Rigidbody
-        torch.GetComponent<Rigidbody>().isKinematic = false;
-
-        // In order to get more than one torch
-        torch = null;
-
-        // Chaging player state
-        _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Observe
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableObserve()
-    {
-        uIplayerController.ToggleTextDoor(true);
-        _state = PlayerStates.Observe;
-    }
-
-    public void DisableObserve()
-    {
-        uIplayerController.ToggleTextDoor(false);
-        _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Enter door 
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableEnterDoor()
-    {
-        uIplayerController.ToggleTextDoor(true);
-        _state = PlayerStates.EnterDoor;
-    }
-
-    public void DisableEnterDoor()
-    {
-        uIplayerController.ToggleTextDoor(false);
-        _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Lighting caliz
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableLightCaliz()
-    {
-        uIplayerController.ToggleTextLightCaliz(true);
-        _state = PlayerStates.LightCaliz;
-    }
-
-    public void DisableLightCaliz()
-    {
-        uIplayerController.ToggleTextLightCaliz(false);
-        _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Movement teleport
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableModeTeleport()
-    {
-        uIplayerController.ToggleTextTeleport(true);
-        _state = PlayerStates.Teleport;
-    }
-
-    public void DisableModeTeleport()
-    {
-        uIplayerController.ToggleTextTeleport(false);
-        _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    void OnTriggerEnter(Collider col)
-    {
-        //Debug.Log("ON TRIGGER ENTER");
-
-        if (col.gameObject.tag == "Torch")
-        {
-            if (holdingTorch == false)
+            if(transform.position == targetPosition)
             {
-                // if we don't hold anything
-                torch = col.gameObject;
+                _state = PlayerStates.Idle;
             }
         }
 
-        if (col.gameObject.tag == "Caliz")
-        {
-            caliz = col.gameObject;
-        }
+   
 
-    }
+}
 
-    void OnTriggerExit(Collider col)
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Torch
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void EnableGrab()
+{
+    uIplayerController.ToggleTextGrab(true);
+
+    // Chaging player state
+    _state = PlayerStates.Grab;
+
+}
+
+public void DisableGrab()
+{
+
+    uIplayerController.ToggleTextGrab(false);
+
+    // Chaging player state
+    _state = PlayerStates.Idle;
+
+}
+
+void Drop()
+{
+    Debug.Log("Drop");
+
+    // Chaging player state
+    _state = PlayerStates.Drop;
+
+    // the torch is not the child anymore
+    torch.transform.parent = null;
+
+    // Enabling physics on Rigidbody
+    torch.GetComponent<Rigidbody>().isKinematic = false;
+
+    // In order to get more than one torch
+    torch = null;
+
+    // Chaging player state
+    _state = PlayerStates.Idle;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Observe
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void EnableObserve()
+{
+    uIplayerController.ToggleTextDoor(true);
+    _state = PlayerStates.Observe;
+}
+
+public void DisableObserve()
+{
+    uIplayerController.ToggleTextDoor(false);
+    _state = PlayerStates.Idle;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Enter door 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void EnableEnterDoor()
+{
+    uIplayerController.ToggleTextDoor(true);
+    _state = PlayerStates.EnterDoor;
+}
+
+public void DisableEnterDoor()
+{
+    uIplayerController.ToggleTextDoor(false);
+    _state = PlayerStates.Idle;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Lighting caliz
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void EnableLightCaliz()
+{
+    uIplayerController.ToggleTextLightCaliz(true);
+    _state = PlayerStates.LightCaliz;
+}
+
+public void DisableLightCaliz()
+{
+    uIplayerController.ToggleTextLightCaliz(false);
+    _state = PlayerStates.Idle;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Movement teleport
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public void EnableModeTeleport()
+{
+    uIplayerController.ToggleTextTeleport(true);
+    _state = PlayerStates.Teleport;
+}
+
+public void DisableModeTeleport()
+{
+    uIplayerController.ToggleTextTeleport(false);
+    _state = PlayerStates.Idle;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+void OnTriggerEnter(Collider col)
+{
+    //Debug.Log("ON TRIGGER ENTER");
+
+    if (col.gameObject.tag == "Torch")
     {
-        //Debug.Log("ON TRIGGER EXIT");
-
-        if (col.gameObject.tag == "Torch")
+        if (holdingTorch == false)
         {
-
-            torch = null;
-
-        }
-
-        if (col.gameObject.tag == "Caliz")
-        {
-
-            caliz = null;
-
+            // if we don't hold anything
+            torch = col.gameObject;
         }
     }
+
+    if (col.gameObject.tag == "Caliz")
+    {
+        caliz = col.gameObject;
+    }
+
+}
+
+void OnTriggerExit(Collider col)
+{
+    //Debug.Log("ON TRIGGER EXIT");
+
+    if (col.gameObject.tag == "Torch")
+    {
+
+        torch = null;
+
+    }
+
+    if (col.gameObject.tag == "Caliz")
+    {
+
+        caliz = null;
+
+    }
+}
 }
