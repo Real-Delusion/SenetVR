@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SpatialTracking;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +11,25 @@ public class PlayerController : MonoBehaviour
     private CameraPointer cameraPointer;
     [SerializeField]
     private UIplayerController uIplayerController;
+    [SerializeField]
+    private InstructionsUI instructionsUI;
+
+    // Buttons PS4 controller
+    //Buttons
+    //Square = joystick button 0
+    //X       = joystick button 1
+    //Circle  = joystick button 2
+    //Triangle= joystick button 3
+    //L1      = joystick button 4
+    //R1      = joystick button 5
+    //L2      = joystick button 6
+    //R2      = joystick button 7
+    //Share	= joystick button 8
+    //Options = joystick button 9
+    //L3      = joystick button 10
+    //R3      = joystick button 11
+    //PS      = joystick button 12
+    //PadPress= joystick button 13
 
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
@@ -20,12 +39,12 @@ public class PlayerController : MonoBehaviour
         Drop,
         Teleport,
         LightCaliz,
+        UI,
         EnterDoor,
-        Observe,
-        Observing
+        Introduction,
     }
 
-    private PlayerStates _state = PlayerStates.Idle;
+    public PlayerStates _state = PlayerStates.Idle;
 
     public PlayerStates State
     {
@@ -58,12 +77,23 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            // If the state is Teleport
+            // If the state is UI
+            if (_state == PlayerStates.UI)
+            {
+
+            }
+
+            // If the state is EnterDoor
             if (_state == PlayerStates.EnterDoor)
             {
 
             }
 
+            // If the state is Introduction
+            if (_state == PlayerStates.Introduction)
+            {
+
+            }
 
         }
     }
@@ -96,6 +126,8 @@ public class PlayerController : MonoBehaviour
 
         cameraPointer = GetComponentInChildren<CameraPointer>();
 
+        instructionsUI = GameObject.FindGameObjectWithTag("Instructions").GetComponent<InstructionsUI>();
+
     }
 
     // Update is called once per frame
@@ -104,13 +136,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("STATE: " + _state);
 
         // Player movement with keyboard (ONLY FOR TESTING)
+#if UNITY_EDITOR
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
+#endif
 
         // Grabbing/Dropping an object
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKey(KeyCode.Joystick1Button1))
         {
             if (torch != null)
             {
@@ -156,27 +190,60 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKeyDown("q") && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
+        if (Input.GetKey(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
         {
             caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         // Teleport
-        if (Input.GetButtonDown("Fire1") && _state == PlayerStates.Teleport)
+        if (Input.GetKey(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
             transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
             Debug.Log(cameraPointer.hit.point);
         }
 
+        // UI
+        if (_state == PlayerStates.UI)
+        {
+            if (Input.GetKey(KeyCode.Joystick1Button0))
+            {
+                GameManager.LoadSceneAsync("MainScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {
+                GameManager.LoadSceneAsync("Temple1");
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+            {
+                uIplayerController.ToggleHelpText(true);
+                instructionsUI.ResetCount();
+
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+            {
+                Application.Quit();
+            }
+
+        }
+
         // EnterDoor
-        if (Input.GetKeyDown("q") && _state == PlayerStates.EnterDoor)
+        if (Input.GetKey(KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor)
         {
             // Load random scene
             GameManager.LoadRandomScene();
 
         }
 
+        // Instrucctions
+        if (Input.GetKey(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
+        {
+            //instructionsUI.NextImg();
+            GameObject.FindGameObjectWithTag("Instructions").GetComponentInChildren<Button>().onClick.Invoke();
+
+        }
+
+    }
 
         // Observe
         if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
@@ -270,9 +337,41 @@ public void DisableObserve()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-// Enter door 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // UI
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableModeUI()
+    {
+        uIplayerController.ToggleTextUI(true);
+        _state = PlayerStates.UI;
+    }
+
+    public void DisableModeUI()
+    {
+        uIplayerController.ToggleTextUI(false);
+        uIplayerController.ToggleHelpText(false);
+
+        _state = PlayerStates.Idle;
+    }
+
+    public void IntroMode(bool state)
+    {
+        if (state)
+        {
+            _state = PlayerStates.Introduction;
+        }
+        else
+        {
+            _state = PlayerStates.Idle;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    void OnTriggerEnter(Collider col)
+    {
+        //Debug.Log("ON TRIGGER ENTER");
 
 public void EnableEnterDoor()
 {

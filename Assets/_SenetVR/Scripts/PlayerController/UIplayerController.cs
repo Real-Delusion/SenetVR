@@ -37,7 +37,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextTeleport(bool state)
     {
-        textPointer.text = "Press Fire to move";
+        textPointer.text = "Press R2 to move";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -50,7 +50,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextGrab(bool state)
     {
-        textPointer.text = "Press E to grab";
+        textPointer.text = "Press X to grab";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -63,7 +63,33 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextLightCaliz(bool state)
     {
-        textPointer.text = "Press Q to light";
+        textPointer.text = "Press O to light";
+        if (state)
+        {
+            textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
+        }
+        else
+        {
+            textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
+        }
+    }
+
+    public void ToggleTextUI(bool state)
+    {
+        textPointer.text = "";
+        if (state)
+        {
+            textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
+        }
+        else
+        {
+            textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
+        }
+    }
+
+    public void ToggleHelpText(bool state)
+    {
+        textPointer.text = "Look back";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -76,7 +102,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextDoor(bool state)
     {
-        textPointer.text = "Press Q to enter";
+        textPointer.text = "Press X to enter";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);

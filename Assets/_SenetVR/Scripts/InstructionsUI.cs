@@ -9,34 +9,28 @@ public class InstructionsUI : MonoBehaviour
     public GameObject head;
     public GameObject button;
 
-    private int count = 0;
+    private int _count = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public void NextImg()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void next()
-    {
-        count++;
-        if (count == 1)
+        _count++;
+        if (_count == 1)
         {
             cardboard.SetActive(false);
             gamepad.SetActive(true);
         }
-        if (count == 2)
+        if (_count == 2)
         {
             gamepad.SetActive(false);
             head.SetActive(true);
             button.SetActive(false);
 
         }
+    }
+
+    public void ResetCount()
+    {
+        _count = 0;
     }
 }
