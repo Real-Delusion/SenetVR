@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
 #endif
 
         // Grabbing/Dropping an object
-        if (Input.GetKey(KeyCode.Joystick1Button1))
+        if (Input.GetKey(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.X))
         {
             if (_torch != null)
             {
@@ -193,10 +193,10 @@ public class PlayerController : MonoBehaviour
                         _torch.GetComponent<Rigidbody>().isKinematic = true;
 
                         // Moving torch in a nice position
-                        _torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
+                        _torch.transform.position = this.transform.position + new Vector3(.34f, -0.34f, 0.3f);
 
                         // Rotating a little bit the torch
-                        _torch.transform.Rotate(0f, 0f, 14f);
+                        _torch.transform.Rotate(27f, 0f, -6f);
 
                         // Chaging player state
                         holdingTorch = true;
@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Teleport
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
+        if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
             transform.position = new Vector3(hitPoint.x, transform.position.y, hitPoint.z);
