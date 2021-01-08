@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         Drop,
         Teleport,
         LightCaliz,
-
+        EnterDoor,
     }
 
     private PlayerStates _state = PlayerStates.Idle;
@@ -51,6 +51,12 @@ public class PlayerController : MonoBehaviour
 
             // If the state is Teleport
             if (_state == PlayerStates.Teleport)
+            {
+
+            }
+
+            // If the state is Teleport
+            if (_state == PlayerStates.EnterDoor)
             {
 
             }
@@ -156,6 +162,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log(cameraPointer.hit.point);
         }
 
+        // EnterDoor
+        if (Input.GetKeyDown("q") && _state == PlayerStates.EnterDoor)
+        {
+            // Load random scene
+            GameManager.LoadRandomScene();
+
+        }
+
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -198,6 +212,24 @@ public class PlayerController : MonoBehaviour
         torch = null;
 
         // Chaging player state
+        _state = PlayerStates.Idle;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Enter door 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableEnterDoor()
+    {
+        uIplayerController.ToggleTextLightCaliz(true);
+        _state = PlayerStates.EnterDoor;
+    }
+
+    public void DisableEnterDoor()
+    {
+        uIplayerController.ToggleTextLightCaliz(false);
         _state = PlayerStates.Idle;
     }
 
