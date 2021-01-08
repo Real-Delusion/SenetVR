@@ -376,13 +376,13 @@ public class PlayerController : MonoBehaviour
 
     public void EnableEnterDoor()
     {
-        uIplayerController.ToggleTextDoor(true);
+        uIplayerController.ToggleTextObserver(true);
         _state = PlayerStates.EnterDoor;
     }
 
     public void DisableEnterDoor()
     {
-        uIplayerController.ToggleTextDoor(false);
+        uIplayerController.ToggleTextObserver(false);
         _state = PlayerStates.Idle;
     }
 

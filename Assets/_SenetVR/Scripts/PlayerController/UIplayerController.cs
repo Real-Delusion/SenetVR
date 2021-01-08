@@ -115,7 +115,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextObserver(bool state)
     {
-        textPointer.text = "Press Q to observe";
+        textPointer.text = "Press X to observe";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
