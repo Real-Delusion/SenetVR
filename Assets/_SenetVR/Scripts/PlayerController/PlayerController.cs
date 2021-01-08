@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
     public float lookingAccuracy = 0.85f;  // Between 0 and 1; To grab and drop
     private Vector3 moveDirection = Vector3.zero;
 
+    // Main camera
+    [Header("Camer")]
+    [SerializeField]
+    public GameObject cameraPlayer;
+
     // Observe propertie
     [Header("Observe mecanic:")]
     public Transform target;
@@ -187,16 +192,16 @@ public class PlayerController : MonoBehaviour
                         Debug.Log("Grab");
 
                         // grab it --> the torch tag object now is the child
-                        _torch.transform.parent = this.transform;
+                        _torch.transform.parent = cameraPlayer.transform;
 
                         // Desabling physics on Rigidbody
                         _torch.GetComponent<Rigidbody>().isKinematic = true;
 
                         // Moving torch in a nice position
-                        _torch.transform.position = this.transform.position + new Vector3(.34f, -0.34f, 0.3f);
+                        _torch.transform.position = this.transform.position + new Vector3(.30f, -0.15f, 0.27f);
 
                         // Rotating a little bit the torch
-                        _torch.transform.Rotate(27f, 0f, -6f);
+                        _torch.transform.Rotate(32f, 0f, -6f);
 
                         // Chaging player state
                         holdingTorch = true;
