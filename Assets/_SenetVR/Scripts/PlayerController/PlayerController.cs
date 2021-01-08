@@ -199,19 +199,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // Teleport
-        if (Input.GetKey(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
-            transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
+            transform.position = new Vector3(hitPoint.x, transform.position.y, hitPoint.z);
             Debug.Log(cameraPointer.hit.point);
         }
 
         // UI
         if (_state == PlayerStates.UI)
         {
-            if (Input.GetKey(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
-                GameManager.LoadSceneAsync("MainScene");
             }
             if (Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
@@ -239,7 +238,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Instrucctions
-        if (Input.GetKey(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
         {
             //instructionsUI.NextImg();
             GameObject.FindGameObjectWithTag("Instructions").GetComponentInChildren<Button>().onClick.Invoke();
