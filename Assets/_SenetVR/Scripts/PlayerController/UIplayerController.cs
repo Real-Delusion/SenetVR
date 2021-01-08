@@ -73,4 +73,17 @@ public class UIplayerController : MonoBehaviour
             textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
         }
     }
+
+    public void ToggleTextDoor(bool state)
+    {
+        textPointer.text = "Press Q to enter";
+        if (state)
+        {
+            textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
+        }
+        else
+        {
+            textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
+        }
+    }
 }

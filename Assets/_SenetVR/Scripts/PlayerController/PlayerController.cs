@@ -223,13 +223,13 @@ public class PlayerController : MonoBehaviour
 
     public void EnableEnterDoor()
     {
-        uIplayerController.ToggleTextLightCaliz(true);
+        uIplayerController.ToggleTextDoor(true);
         _state = PlayerStates.EnterDoor;
     }
 
     public void DisableEnterDoor()
     {
-        uIplayerController.ToggleTextLightCaliz(false);
+        uIplayerController.ToggleTextDoor(false);
         _state = PlayerStates.Idle;
     }
 
