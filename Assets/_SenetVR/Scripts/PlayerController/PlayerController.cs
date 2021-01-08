@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SpatialTracking;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         Teleport,
         LightCaliz,
         EnterDoor,
+        Observe
     }
 
     private PlayerStates _state = PlayerStates.Idle;
@@ -72,6 +74,8 @@ public class PlayerController : MonoBehaviour
 
     // Between 0 and 1;
     public float lookingAccuracy = 0.85f;
+
+    public GameObject hooaaaaaa;
 
     private GameObject caliz;
     private GameObject torch;
@@ -170,6 +174,18 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        // Observe
+        if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
+        {
+            // Disable player controls
+            this.transform.GetChild(0).gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
+
+            // Observe jeroglificos
+
+            
+
+        }
+
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -216,6 +232,25 @@ public class PlayerController : MonoBehaviour
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Observe
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableObserve()
+    {
+        uIplayerController.ToggleTextDoor(true);
+        _state = PlayerStates.Observe;
+    }
+
+    public void DisableObserve()
+    {
+        uIplayerController.ToggleTextDoor(false);
+        _state = PlayerStates.Idle;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     // Enter door 
