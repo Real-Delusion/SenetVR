@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SpatialTracking;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
         UI,
         EnterDoor,
         Introduction,
+        Observe,
+        Observing
     }
 
     public PlayerStates _state = PlayerStates.Idle;
@@ -243,35 +246,33 @@ public class PlayerController : MonoBehaviour
 
         }
 
-    }
-
         // Observe
         if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
         {
             _state = PlayerStates.Observing;
         }
 
-        if(_state == PlayerStates.Observing)
+        if (_state == PlayerStates.Observing)
         {
             //Debug.Log("Observing");
             // Disable player controls
             this.transform.GetChild(0).gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
 
             // Define a target position above and behind the target transform
-            Vector3 targetPosition = target.TransformPoint(target.transform.position - new Vector3(0f,0f,10f));
+            Vector3 targetPosition = target.TransformPoint(target.transform.position - new Vector3(0f, 0f, 10f));
 
             // Smoothly move the camera towards that target position
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-            if(transform.position == targetPosition)
+            if (transform.position == targetPosition)
             {
                 _state = PlayerStates.Idle;
             }
         }
 
-   
+    }
 
-}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Torch
@@ -369,9 +370,7 @@ public void DisableObserve()
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void OnTriggerEnter(Collider col)
-    {
-        //Debug.Log("ON TRIGGER ENTER");
+ 
 
 public void EnableEnterDoor()
 {
