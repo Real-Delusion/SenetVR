@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private CameraPointer cameraPointer;
     [SerializeField]
     private UIplayerController uIplayerController;
+    [SerializeField]
+    private InstructionsUI instructionsUI;
 
     // UI
     private GameObject _uiElement;
@@ -42,10 +44,11 @@ public class PlayerController : MonoBehaviour
         Teleport,
         LightCaliz,
         UI,
-
+        EnterDoor,
+        Introduction,
     }
 
-    private PlayerStates _state = PlayerStates.Idle;
+    public PlayerStates _state = PlayerStates.Idle;
 
     public PlayerStates State
     {
@@ -84,6 +87,18 @@ public class PlayerController : MonoBehaviour
 
             }
 
+            // If the state is EnterDoor
+            if (_state == PlayerStates.EnterDoor)
+            {
+
+            }
+
+            // If the state is Introduction
+            if (_state == PlayerStates.Introduction)
+            {
+
+            }
+
         }
     }
     // -------------------------------- PlayerStates -----------------------------------
@@ -111,6 +126,8 @@ public class PlayerController : MonoBehaviour
 
         cameraPointer = GetComponentInChildren<CameraPointer>();
 
+        instructionsUI = GameObject.FindGameObjectWithTag("Instructions").GetComponent<InstructionsUI>();
+
     }
 
     // Update is called once per frame
@@ -127,7 +144,7 @@ public class PlayerController : MonoBehaviour
 #endif
 
         // Grabbing/Dropping an object
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        if (Input.GetKey(KeyCode.Joystick1Button1))
         {
             if (torch != null)
             {
@@ -173,13 +190,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
+        if (Input.GetKey(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
         {
             caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         // Teleport
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
+        if (Input.GetKey(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
             transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
@@ -189,7 +206,7 @@ public class PlayerController : MonoBehaviour
         // UI
         if (_state == PlayerStates.UI)
         {
-            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKey(KeyCode.Joystick1Button0))
             {
                 GameManager.LoadSceneAsync("MainScene");
             }
@@ -200,12 +217,29 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
                 uIplayerController.ToggleHelpText(true);
+                instructionsUI.ResetCount();
 
             }
             if (Input.GetKeyDown(KeyCode.Joystick1Button3))
             {
                 Application.Quit();
             }
+
+        }
+
+        // EnterDoor
+        if (Input.GetKey(KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor)
+        {
+            // Load random scene
+            GameManager.LoadRandomScene();
+
+        }
+
+        // Instrucctions
+        if (Input.GetKey(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
+        {
+            //instructionsUI.NextImg();
+            GameObject.FindGameObjectWithTag("Instructions").GetComponentInChildren<Button>().onClick.Invoke();
 
         }
 
@@ -326,6 +360,18 @@ public class PlayerController : MonoBehaviour
         uIplayerController.ToggleHelpText(false);
 
         _state = PlayerStates.Idle;
+    }
+
+    public void IntroMode(bool state)
+    {
+        if (state)
+        {
+            _state = PlayerStates.Introduction;
+        }
+        else
+        {
+            _state = PlayerStates.Idle;
+        }
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------

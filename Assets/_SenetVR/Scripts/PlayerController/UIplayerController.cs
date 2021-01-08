@@ -102,7 +102,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextDoor(bool state)
     {
-        textPointer.text = "Press Q to enter";
+        textPointer.text = "Press X to enter";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
