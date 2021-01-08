@@ -27,11 +27,11 @@ public class UIplayerController : MonoBehaviour
     {
         if (state)
         {
-            pointer.rectTransform.DOScale(new Vector3(2, 2, 2), _pointerTransition);
+            pointer.rectTransform.DOScale(new Vector3(1, 1, 1), _pointerTransition);
         }
         else
         {
-            pointer.rectTransform.DOScale(new Vector3(1, 1, 1), _pointerTransition);
+            pointer.rectTransform.DOScale(new Vector3(.5f, .5f, .5f), _pointerTransition);
         }
     }
 
