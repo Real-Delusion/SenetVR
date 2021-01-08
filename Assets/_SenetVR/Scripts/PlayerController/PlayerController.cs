@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SpatialTracking;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class PlayerController : MonoBehaviour
         UI,
         EnterDoor,
         Introduction,
+        Observe,
+        Observing
     }
 
     public PlayerStates _state = PlayerStates.Idle;
@@ -111,6 +114,10 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private bool holdingTorch = false;
+
+    public Transform target;
+    private Vector3 velocity = Vector3.zero;
+    public float smoothTime = 1F;
 
 
     // Start is called before the first frame update
@@ -239,7 +246,33 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        // Observe
+        if (Input.GetKeyDown("q") && _state == PlayerStates.Observe)
+        {
+            _state = PlayerStates.Observing;
+        }
+
+        if (_state == PlayerStates.Observing)
+        {
+            //Debug.Log("Observing");
+            // Disable player controls
+            this.transform.GetChild(0).gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
+
+            // Define a target position above and behind the target transform
+            Vector3 targetPosition = target.TransformPoint(target.transform.position - new Vector3(0f, 0f, 10f));
+
+            // Smoothly move the camera towards that target position
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+            if (transform.position == targetPosition)
+            {
+                _state = PlayerStates.Idle;
+            }
+        }
+
     }
+
+
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     // Torch
@@ -287,7 +320,58 @@ public class PlayerController : MonoBehaviour
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // Enter door 
+    // Observe
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableObserve()
+    {
+        uIplayerController.ToggleTextDoor(true);
+        _state = PlayerStates.Observe;
+    }
+
+    public void DisableObserve()
+    {
+        uIplayerController.ToggleTextDoor(false);
+        _state = PlayerStates.Idle;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // UI
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableModeUI()
+    {
+        uIplayerController.ToggleTextUI(true);
+        _state = PlayerStates.UI;
+    }
+
+    public void DisableModeUI()
+    {
+        uIplayerController.ToggleTextUI(false);
+        uIplayerController.ToggleHelpText(false);
+
+        _state = PlayerStates.Idle;
+    }
+
+    public void IntroMode(bool state)
+    {
+        if (state)
+        {
+            _state = PlayerStates.Introduction;
+        }
+        else
+        {
+            _state = PlayerStates.Idle;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // EnterDoor
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void EnableEnterDoor()
@@ -336,38 +420,6 @@ public class PlayerController : MonoBehaviour
     {
         uIplayerController.ToggleTextTeleport(false);
         _state = PlayerStates.Idle;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-    // UI
-    //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void EnableModeUI()
-    {
-        uIplayerController.ToggleTextUI(true);
-        _state = PlayerStates.UI;
-    }
-
-    public void DisableModeUI()
-    {
-        uIplayerController.ToggleTextUI(false);
-        uIplayerController.ToggleHelpText(false);
-
-        _state = PlayerStates.Idle;
-    }
-
-    public void IntroMode(bool state)
-    {
-        if (state)
-        {
-            _state = PlayerStates.Introduction;
-        }
-        else
-        {
-            _state = PlayerStates.Idle;
-        }
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
