@@ -18,16 +18,19 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Sends messages to gazed GameObject.
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
-    private const float _maxDistance = 10;
+    private const float _maxDistance = 5;
     private GameObject _gazedAtObject = null;
 
     public RaycastHit hit;
+    public GameObject gameObjectDetected;
+
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
@@ -44,6 +47,7 @@ public class CameraPointer : MonoBehaviour
                 // New GameObject.
                 _gazedAtObject?.SendMessage("OnPointerExit");
                 _gazedAtObject = hit.transform.gameObject;
+                gameObjectDetected = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerEnter");
             }
         }
@@ -54,10 +58,10 @@ public class CameraPointer : MonoBehaviour
             _gazedAtObject = null;
         }
 
-        // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
-        {
-            _gazedAtObject?.SendMessage("OnPointerClick");
-        }
+        //// Checks for screen touches.
+        //if (Google.XR.Cardboard.Api.IsTriggerPressed)
+        //{
+        //    _gazedAtObject?.SendMessage("OnPointerClick");
+        //}
     }
 }

@@ -63,7 +63,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextLightCaliz(bool state)
     {
-        textPointer.text = "Press Square   to light";
+        textPointer.text = "Press O to light";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -76,7 +76,20 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextUI(bool state)
     {
-        textPointer.text = "Press X to click";
+        textPointer.text = "";
+        if (state)
+        {
+            textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
+        }
+        else
+        {
+            textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
+        }
+    }
+
+    public void ToggleHelpText(bool state)
+    {
+        textPointer.text = "Look back";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);

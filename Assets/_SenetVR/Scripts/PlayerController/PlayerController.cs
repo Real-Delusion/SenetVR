@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private CameraPointer cameraPointer;
     [SerializeField]
     private UIplayerController uIplayerController;
+
+    // UI
+    private GameObject _uiElement;
 
     // Buttons PS4 controller
     //Buttons
@@ -114,10 +119,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("STATE: " + _state);
 
         // Player movement with keyboard (ONLY FOR TESTING)
+#if UNITY_EDITOR
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection *= speed;
         characterController.Move(moveDirection * Time.deltaTime);
+#endif
 
         // Grabbing/Dropping an object
         if (Input.GetKeyDown(KeyCode.Joystick1Button1))
@@ -166,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
         {
             caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
@@ -177,6 +184,29 @@ public class PlayerController : MonoBehaviour
             Vector3 hitPoint = cameraPointer.hit.point;
             transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
             Debug.Log(cameraPointer.hit.point);
+        }
+
+        // UI
+        if (_state == PlayerStates.UI)
+        {
+            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+            {
+                GameManager.LoadSceneAsync("MainScene");
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {
+                GameManager.LoadSceneAsync("Temple1");
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+            {
+                uIplayerController.ToggleHelpText(true);
+
+            }
+            if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+            {
+                Application.Quit();
+            }
+
         }
 
     }
@@ -275,6 +305,8 @@ public class PlayerController : MonoBehaviour
     public void DisableModeUI()
     {
         uIplayerController.ToggleTextUI(false);
+        uIplayerController.ToggleHelpText(false);
+
         _state = PlayerStates.Idle;
     }
 
