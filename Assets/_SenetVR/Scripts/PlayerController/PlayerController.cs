@@ -32,6 +32,39 @@ public class PlayerController : MonoBehaviour
     //PS      = joystick button 12
     //PadPress= joystick button 13
 
+    // Torch and caliz
+    private GameObject _caliz;
+    private GameObject _torch;
+    private bool holdingTorch = false;
+    public float lookingAccuracy = 0.85f;  // Between 0 and 1; To grab and drop
+    private Vector3 moveDirection = Vector3.zero;
+
+    // Observe propertie
+    [Header("Observe mecanic:")]
+    public Transform target;
+    private Vector3 velocity = Vector3.zero;
+    public float smoothTime = 1F;
+
+    // Player Movement Charactercontroller
+    // For player movement (onyl for testing)
+    [Header("Character Controller Properties")]
+    [SerializeField]
+    private CharacterController characterController;
+    [SerializeField]
+    private float speed = 7.0f;
+    [SerializeField]
+    private float gravity = -9.81f;
+
+    // GRAVITY SYSTEM
+    [Header("Gravity")]
+    [SerializeField]
+    private Transform groundChecker;
+    [SerializeField]
+    private float groundDistance = .4f;
+    [SerializeField]
+    private LayerMask groundLayer;
+    private bool _isGrounded;
+
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
     {
@@ -103,23 +136,6 @@ public class PlayerController : MonoBehaviour
     // -------------------------------- PlayerStates -----------------------------------
 
 
-    // For player movement (onyl for testing)
-    public float speed = 7.0f;
-
-    // Between 0 and 1;
-    public float lookingAccuracy = 0.85f;
-
-    private GameObject caliz;
-    private GameObject torch;
-    private CharacterController characterController;
-    private Vector3 moveDirection = Vector3.zero;
-    private bool holdingTorch = false;
-
-    public Transform target;
-    private Vector3 velocity = Vector3.zero;
-    public float smoothTime = 1F;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -137,19 +153,17 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Debug.Log("STATE: " + _state);
-
+        // Gravity check
+        gravityAction();
         // Player movement with keyboard (ONLY FOR TESTING)
 #if UNITY_EDITOR
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= speed;
-        characterController.Move(moveDirection * Time.deltaTime);
+        moveAxes();
 #endif
 
         // Grabbing/Dropping an object
         if (Input.GetKey(KeyCode.Joystick1Button1))
         {
-            if (torch != null)
+            if (_torch != null)
             {
                 // The player has already the torch
                 if (holdingTorch == true)
@@ -161,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Vector3 dir = (torch.transform.position - transform.position).normalized;
+                    Vector3 dir = (_torch.transform.position - transform.position).normalized;
                     float dot = Vector3.Dot(dir, transform.forward);
 
                     Debug.Log(dot);
@@ -173,16 +187,16 @@ public class PlayerController : MonoBehaviour
                         Debug.Log("Grab");
 
                         // grab it --> the torch tag object now is the child
-                        torch.transform.parent = this.transform;
+                        _torch.transform.parent = this.transform;
 
                         // Desabling physics on Rigidbody
-                        torch.GetComponent<Rigidbody>().isKinematic = true;
+                        _torch.GetComponent<Rigidbody>().isKinematic = true;
 
                         // Moving torch in a nice position
-                        torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
+                        _torch.transform.position = this.transform.position + new Vector3(0.6f, -0.5f, 0.83f);
 
                         // Rotating a little bit the torch
-                        torch.transform.Rotate(0f, 0f, 14f);
+                        _torch.transform.Rotate(0f, 0f, 14f);
 
                         // Chaging player state
                         holdingTorch = true;
@@ -193,9 +207,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKey(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
+        if (Input.GetKey(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && _caliz != null)
         {
-            caliz.transform.GetChild(1).gameObject.SetActive(true);
+            _caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         // Teleport
@@ -305,13 +319,13 @@ public class PlayerController : MonoBehaviour
         _state = PlayerStates.Drop;
 
         // the torch is not the child anymore
-        torch.transform.parent = null;
+        _torch.transform.parent = null;
 
         // Enabling physics on Rigidbody
-        torch.GetComponent<Rigidbody>().isKinematic = false;
+        _torch.GetComponent<Rigidbody>().isKinematic = false;
 
         // In order to get more than one torch
-        torch = null;
+        _torch = null;
 
         // Chaging player state
         _state = PlayerStates.Idle;
@@ -424,6 +438,43 @@ public class PlayerController : MonoBehaviour
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Player Movement Character Controller
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void moveAxes()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        characterController.Move(move * speed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+
+        characterController.Move(velocity * Time.deltaTime);
+
+        
+    }
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // Gravity
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void gravityAction()
+    {
+        _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundLayer);
+
+        if (_isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+    }
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
     void OnTriggerEnter(Collider col)
     {
         //Debug.Log("ON TRIGGER ENTER");
@@ -433,13 +484,13 @@ public class PlayerController : MonoBehaviour
             if (holdingTorch == false)
             {
                 // if we don't hold anything
-                torch = col.gameObject;
+                _torch = col.gameObject;
             }
         }
 
         if (col.gameObject.tag == "Caliz")
         {
-            caliz = col.gameObject;
+            _caliz = col.gameObject;
         }
 
     }
@@ -451,14 +502,14 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == "Torch")
         {
 
-            torch = null;
+            _torch = null;
 
         }
 
         if (col.gameObject.tag == "Caliz")
         {
 
-            caliz = null;
+            _caliz = null;
 
         }
     }
