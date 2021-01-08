@@ -11,6 +11,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UIplayerController uIplayerController;
 
+    // Buttons PS4 controller
+    //Buttons
+    //Square = joystick button 0
+    //X       = joystick button 1
+    //Circle  = joystick button 2
+    //Triangle= joystick button 3
+    //L1      = joystick button 4
+    //R1      = joystick button 5
+    //L2      = joystick button 6
+    //R2      = joystick button 7
+    //Share	= joystick button 8
+    //Options = joystick button 9
+    //L3      = joystick button 10
+    //R3      = joystick button 11
+    //PS      = joystick button 12
+    //PadPress= joystick button 13
+
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
     {
@@ -19,6 +36,7 @@ public class PlayerController : MonoBehaviour
         Drop,
         Teleport,
         LightCaliz,
+        UI,
 
     }
 
@@ -55,6 +73,11 @@ public class PlayerController : MonoBehaviour
 
             }
 
+            // If the state is UI
+            if (_state == PlayerStates.UI)
+            {
+
+            }
 
         }
     }
@@ -97,7 +120,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Grabbing/Dropping an object
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             if (torch != null)
             {
@@ -143,13 +166,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKeyDown("q") && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.LightCaliz && holdingTorch == true && caliz != null)
         {
             caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         // Teleport
-        if (Input.GetButtonDown("Fire1") && _state == PlayerStates.Teleport)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
         {
             Vector3 hitPoint = cameraPointer.hit.point;
             transform.position = new Vector3(hitPoint.x, hitPoint.y + transform.position.y, hitPoint.z);
@@ -234,6 +257,24 @@ public class PlayerController : MonoBehaviour
     public void DisableModeTeleport()
     {
         uIplayerController.ToggleTextTeleport(false);
+        _state = PlayerStates.Idle;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+    // UI
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void EnableModeUI()
+    {
+        uIplayerController.ToggleTextUI(true);
+        _state = PlayerStates.UI;
+    }
+
+    public void DisableModeUI()
+    {
+        uIplayerController.ToggleTextUI(false);
         _state = PlayerStates.Idle;
     }
 

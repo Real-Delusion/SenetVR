@@ -37,7 +37,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextTeleport(bool state)
     {
-        textPointer.text = "Press Fire to move";
+        textPointer.text = "Press R2 to move";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -50,7 +50,7 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextGrab(bool state)
     {
-        textPointer.text = "Press E to grab";
+        textPointer.text = "Press X to grab";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
@@ -63,7 +63,20 @@ public class UIplayerController : MonoBehaviour
 
     public void ToggleTextLightCaliz(bool state)
     {
-        textPointer.text = "Press Q to light";
+        textPointer.text = "Press Square   to light";
+        if (state)
+        {
+            textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
+        }
+        else
+        {
+            textPointer.rectTransform.DOScale(_deactivatedScale, _deactivetedTextTransition);
+        }
+    }
+
+    public void ToggleTextUI(bool state)
+    {
+        textPointer.text = "Press X to click";
         if (state)
         {
             textPointer.rectTransform.DOScale(_activatedScale, _activatedTextTransition);
