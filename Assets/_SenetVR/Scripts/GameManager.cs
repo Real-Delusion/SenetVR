@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using RealDelusion.Utils;
 
 public class GameManager : MonoBehaviour
 {
@@ -85,4 +86,34 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(instance.levelManager.Preload, LoadSceneMode.Additive);
         instance.StartCoroutine(instance.levelManager.LoadAsync(scene));
     }
+
+        public static void LoadRandomScene()
+    {
+        // Create scenes dictionary
+        Dictionary<string, int> scenes =   new Dictionary<string, int>();
+        string scenePrefix = "Temple";
+
+        // Add
+        for (int i = 1; i < 4; i++)
+        {
+            string scene = scenePrefix + i;
+            
+            if (scene == SceneManager.GetActiveScene().name)
+            {
+                // Add current scene with 0 weight
+                scenes.Add(scene, 0);
+            }
+            else
+            {
+                // Add other scenes with same weight (> 0)
+                scenes.Add(scene, 10);
+            }
+
+        }
+
+        // Select random scene
+        string selectedScene = RandomUtils.RandomWeighted(scenes);
+        LoadSceneAsync(selectedScene);
+    }
+
 }
