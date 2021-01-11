@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SpatialTracking;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     // Main camera
-    [Header("Camer")]
+    [Header("Camera")]
     [SerializeField]
     public GameObject cameraPlayer;
 
@@ -69,6 +70,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
     private bool _isGrounded;
+
+    // UI Click
+    private bool _introEstadoAnterior = false;
+    private bool _introActivarClick = false;
 
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates
@@ -166,7 +171,7 @@ public class PlayerController : MonoBehaviour
 #endif
 
         // Grabbing/Dropping an object
-        if (Input.GetKey(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.X))
         {
             if (_torch != null)
             {
@@ -212,7 +217,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKey(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && _caliz != null)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && _caliz != null)
         {
             _caliz.transform.GetChild(1).gameObject.SetActive(true);
         }
@@ -249,7 +254,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // EnterDoor
-        if (Input.GetKey(KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor)
         {
             // Load random scene
             GameManager.LoadRandomScene();
@@ -257,15 +262,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Instrucctions
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
         {
-            //instructionsUI.NextImg();
-            GameObject.FindGameObjectWithTag("Instructions").GetComponentInChildren<Button>().onClick.Invoke();
-
+            instructionsUI.NextImg();
         }
 
         // Observe
-        if (Input.GetKeyDown("q") || Input.GetKey(KeyCode.Joystick1Button0) && _state == PlayerStates.Observe)
+        if (Input.GetKeyDown("q") || Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.Observe)
         {
             _state = PlayerStates.Observing;
         }
