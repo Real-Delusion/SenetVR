@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SpatialTracking;
-using System;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     // Scripts
-    [Header("Scripts")]
+    [Header ("Scripts")]
     [SerializeField]
     private CameraPointer cameraPointer;
     [SerializeField]
@@ -37,23 +36,23 @@ public class PlayerController : MonoBehaviour
     private GameObject _caliz;
     private GameObject _torch;
     private bool holdingTorch = false;
-    public float lookingAccuracy = 0.85f;  // Between 0 and 1; To grab and drop
+    public float lookingAccuracy = 0.85f; // Between 0 and 1; To grab and drop
     private Vector3 moveDirection = Vector3.zero;
 
     // Main camera
-    [Header("Camera")]
+    [Header ("Camera")]
     [SerializeField]
     public GameObject cameraPlayer;
 
     // Observe propertie
-    [Header("Observe mecanic:")]
+    [Header ("Observe mecanic:")]
     public Transform target;
     private Vector3 velocity = Vector3.zero;
     public float smoothTime = 1F;
 
     // Player Movement Charactercontroller
     // For player movement (onyl for testing)
-    [Header("Character Controller Properties")]
+    [Header ("Character Controller Properties")]
     [SerializeField]
     private CharacterController characterController;
     [SerializeField]
@@ -62,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private float gravity = -9.81f;
 
     // GRAVITY SYSTEM
-    [Header("Gravity")]
+    [Header ("Gravity")]
     [SerializeField]
     private Transform groundChecker;
     [SerializeField]
@@ -76,8 +75,7 @@ public class PlayerController : MonoBehaviour
     private bool _introActivarClick = false;
 
     // -------------------------------- PlayerStates -----------------------------------
-    public enum PlayerStates
-    {
+    public enum PlayerStates {
         Idle,
         Grab,
         Drop,
@@ -92,52 +90,43 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStates _state = PlayerStates.Idle;
 
-    public PlayerStates State
-    {
+    public PlayerStates State {
         get => _state;
-        set
-        {
+        set {
             _state = value;
 
             // If the state is idle
-            if (_state == PlayerStates.Idle)
-            {
+            if (_state == PlayerStates.Idle) {
 
             }
 
             // If the state is grabbing
-            if (_state == PlayerStates.Grab)
-            {
+            if (_state == PlayerStates.Grab) {
 
             }
 
             // If the state is dropping
-            if (_state == PlayerStates.Drop)
-            {
+            if (_state == PlayerStates.Drop) {
 
             }
 
             // If the state is Teleport
-            if (_state == PlayerStates.Teleport)
-            {
+            if (_state == PlayerStates.Teleport) {
 
             }
 
             // If the state is UI
-            if (_state == PlayerStates.UI)
-            {
+            if (_state == PlayerStates.UI) {
 
             }
 
             // If the state is EnterDoor
-            if (_state == PlayerStates.EnterDoor)
-            {
+            if (_state == PlayerStates.EnterDoor) {
 
             }
 
             // If the state is Introduction
-            if (_state == PlayerStates.Introduction)
-            {
+            if (_state == PlayerStates.Introduction) {
 
             }
 
@@ -145,68 +134,59 @@ public class PlayerController : MonoBehaviour
     }
     // -------------------------------- PlayerStates -----------------------------------
 
-
     // Start is called before the first frame update
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
+    void Start () {
+        characterController = GetComponent<CharacterController> ();
 
-        uIplayerController = GetComponent<UIplayerController>();
+        uIplayerController = GetComponent<UIplayerController> ();
 
-        cameraPointer = GetComponentInChildren<CameraPointer>();
+        cameraPointer = GetComponentInChildren<CameraPointer> ();
 
-        instructionsUI = GameObject.FindGameObjectWithTag("Instructions").GetComponent<InstructionsUI>();
+        instructionsUI = GameObject.FindGameObjectWithTag ("Instructions").GetComponent<InstructionsUI> ();
 
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        Debug.Log("STATE: " + _state);
+    void FixedUpdate () {
+        Debug.Log ("STATE: " + _state);
         // Gravity check
-        gravityAction();
+        gravityAction ();
         // Player movement with keyboard (ONLY FOR TESTING)
 #if UNITY_EDITOR
-        moveAxes();
+        moveAxes ();
 #endif
 
         // Grabbing/Dropping an object
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.X))
-        {
-            if (_torch != null)
-            {
+        if (Input.GetKeyDown (KeyCode.Joystick1Button1) || Input.GetKeyDown (KeyCode.X)) {
+            if (_torch != null) {
                 // The player has already the torch
-                if (holdingTorch == true)
-                {
+                if (holdingTorch == true) {
 
-                    Drop();
+                    Drop ();
                     holdingTorch = false;
 
-                }
-                else
-                {
+                } else {
                     Vector3 dir = (_torch.transform.position - transform.position).normalized;
-                    float dot = Vector3.Dot(dir, transform.forward);
+                    float dot = Vector3.Dot (dir, transform.forward);
 
-                    Debug.Log(dot);
+                    Debug.Log (dot);
 
                     // dot is closer to 1 --> the player is looking at the object
                     // dot  is closer to 0 --> the player is looking away
-                    if (dot > lookingAccuracy && _state == PlayerStates.Grab)
-                    {
-                        Debug.Log("Grab");
+                    if (dot > lookingAccuracy && _state == PlayerStates.Grab) {
+                        Debug.Log ("Grab");
 
                         // grab it --> the torch tag object now is the child
                         _torch.transform.parent = cameraPlayer.transform;
 
                         // Desabling physics on Rigidbody
-                        _torch.GetComponent<Rigidbody>().isKinematic = true;
+                        _torch.GetComponent<Rigidbody> ().isKinematic = true;
 
                         // Moving torch in a nice position
-                        _torch.transform.position = this.transform.position + new Vector3(.30f, -0.15f, 0.27f);
+                        _torch.transform.position = this.transform.position + new Vector3 (.30f, -0.15f, 0.27f);
 
                         // Rotating a little bit the torch
-                        _torch.transform.Rotate(32f, 0f, -6f);
+                        _torch.transform.Rotate (32f, 0f, -6f);
 
                         // Chaging player state
                         holdingTorch = true;
@@ -217,111 +197,92 @@ public class PlayerController : MonoBehaviour
         }
 
         // Lighting caliz
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && _caliz != null)
-        {
-            _caliz.transform.GetChild(1).gameObject.SetActive(true);
+        if (Input.GetKeyDown (KeyCode.Joystick1Button2) && _state == PlayerStates.LightCaliz && holdingTorch == true && _caliz != null) {
+            _caliz.transform.GetChild (1).gameObject.SetActive (true);
         }
 
         // Teleport
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport)
-        {
+        if (Input.GetKeyDown (KeyCode.T) || Input.GetKeyDown (KeyCode.Joystick1Button7) && _state == PlayerStates.Teleport) {
             Vector3 hitPoint = cameraPointer.hit.point;
-            transform.position = new Vector3(hitPoint.x, transform.position.y, hitPoint.z);
-            Debug.Log(cameraPointer.hit.point);
+            transform.position = new Vector3 (hitPoint.x, transform.position.y, hitPoint.z);
+            Debug.Log (cameraPointer.hit.point);
         }
 
         // UI
-        if (_state == PlayerStates.UI)
-        {
-            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
-            {
+        if (_state == PlayerStates.UI) {
+            if (Input.GetKeyDown (KeyCode.Joystick1Button0)) { }
+            if (Input.GetKeyDown (KeyCode.Joystick1Button1)) {
+                GameManager.LoadSceneAsync ("Temple1");
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
-            {
-                GameManager.LoadSceneAsync("Temple1");
+            if (Input.GetKeyDown (KeyCode.Joystick1Button2)) {
+                GameManager.LoadSceneAsync ("Video360");
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button2))
-            {
-                uIplayerController.ToggleHelpText(true);
-                instructionsUI.ResetCount();
-
-            }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button3))
-            {
-                Application.Quit();
+            if (Input.GetKeyDown (KeyCode.Joystick1Button3)) {
+                Application.Quit ();
             }
 
         }
 
         // EnterDoor
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor)
-        {
+        if (Input.GetKeyDown (KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor) {
             // Load random scene
-            GameManager.LoadRandomScene();
+            GameManager.LoadRandomScene ();
 
         }
 
         // Instrucctions
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction)
-        {
-            instructionsUI.NextImg();
+        if (Input.GetKeyDown (KeyCode.X) || Input.GetKeyDown (KeyCode.Joystick1Button1) && _state == PlayerStates.Introduction) {
+            instructionsUI.NextImg ();
         }
 
         // Observe
-        if (Input.GetKeyDown("q") || Input.GetKeyDown(KeyCode.Joystick1Button0) && _state == PlayerStates.Observe)
-        {
+        if (Input.GetKeyDown ("q") || Input.GetKeyDown (KeyCode.Joystick1Button0) && _state == PlayerStates.Observe) {
             _state = PlayerStates.Observing;
         }
 
-        if (_state == PlayerStates.Observing)
-        {
+        if (_state == PlayerStates.Observing) {
             //Debug.Log("Observing");
             // Disable player controls
-            this.transform.GetChild(0).gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
+            this.transform.GetChild (0).gameObject.GetComponent<TrackedPoseDriver> ().enabled = false;
 
             // Zoom in to the jeroglificos
             float minFov = 50f;
             float maxFov = 100f;
             float sensitivity = 10f;
 
-            transform.LookAt(target);
+            transform.LookAt (target);
             float fov = Camera.main.fieldOfView;
             fov -= Time.deltaTime * sensitivity;
-            fov = Mathf.Clamp(fov, minFov, maxFov);
+            fov = Mathf.Clamp (fov, minFov, maxFov);
             Camera.main.fieldOfView = fov;
 
         }
 
     }
 
-
-
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     // Torch
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableGrab()
-    {
-        uIplayerController.ToggleTextGrab(true);
+    public void EnableGrab () {
+        uIplayerController.ToggleTextGrab (true);
 
         // Chaging player state
         _state = PlayerStates.Grab;
 
     }
 
-    public void DisableGrab()
-    {
+    public void DisableGrab () {
 
-        uIplayerController.ToggleTextGrab(false);
+        uIplayerController.ToggleTextGrab (false);
 
         // Chaging player state
         _state = PlayerStates.Idle;
 
     }
 
-    void Drop()
-    {
-        Debug.Log("Drop");
+    void Drop () {
+        Debug.Log ("Drop");
 
         // Chaging player state
         _state = PlayerStates.Drop;
@@ -330,7 +291,7 @@ public class PlayerController : MonoBehaviour
         _torch.transform.parent = null;
 
         // Enabling physics on Rigidbody
-        _torch.GetComponent<Rigidbody>().isKinematic = false;
+        _torch.GetComponent<Rigidbody> ().isKinematic = false;
 
         // In order to get more than one torch
         _torch = null;
@@ -345,47 +306,38 @@ public class PlayerController : MonoBehaviour
     // Observe
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableObserve()
-    {
-        uIplayerController.ToggleTextDoor(true);
+    public void EnableObserve () {
+        uIplayerController.ToggleTextDoor (true);
         _state = PlayerStates.Observe;
     }
 
-    public void DisableObserve()
-    {
-        uIplayerController.ToggleTextDoor(false);
+    public void DisableObserve () {
+        uIplayerController.ToggleTextDoor (false);
         _state = PlayerStates.Idle;
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
-
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     // UI
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableModeUI()
-    {
-        uIplayerController.ToggleTextUI(true);
+    public void EnableModeUI () {
+        uIplayerController.ToggleTextUI (true);
         _state = PlayerStates.UI;
     }
 
-    public void DisableModeUI()
-    {
-        uIplayerController.ToggleTextUI(false);
-        uIplayerController.ToggleHelpText(false);
+    public void DisableModeUI () {
+        uIplayerController.ToggleTextUI (false);
+        uIplayerController.ToggleHelpText (false);
 
         _state = PlayerStates.Idle;
     }
 
-    public void IntroMode(bool state)
-    {
-        if (state)
-        {
+    public void IntroMode (bool state) {
+        if (state) {
             _state = PlayerStates.Introduction;
-        }
-        else
-        {
+        } else {
             _state = PlayerStates.Idle;
         }
     }
@@ -396,15 +348,13 @@ public class PlayerController : MonoBehaviour
     // EnterDoor
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableEnterDoor()
-    {
-        uIplayerController.ToggleTextObserver(true);
+    public void EnableEnterDoor () {
+        uIplayerController.ToggleTextObserver (true);
         _state = PlayerStates.EnterDoor;
     }
 
-    public void DisableEnterDoor()
-    {
-        uIplayerController.ToggleTextObserver(false);
+    public void DisableEnterDoor () {
+        uIplayerController.ToggleTextObserver (false);
         _state = PlayerStates.Idle;
     }
 
@@ -414,15 +364,13 @@ public class PlayerController : MonoBehaviour
     // Lighting caliz
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableLightCaliz()
-    {
-        uIplayerController.ToggleTextLightCaliz(true);
+    public void EnableLightCaliz () {
+        uIplayerController.ToggleTextLightCaliz (true);
         _state = PlayerStates.LightCaliz;
     }
 
-    public void DisableLightCaliz()
-    {
-        uIplayerController.ToggleTextLightCaliz(false);
+    public void DisableLightCaliz () {
+        uIplayerController.ToggleTextLightCaliz (false);
         _state = PlayerStates.Idle;
     }
 
@@ -432,15 +380,13 @@ public class PlayerController : MonoBehaviour
     // Movement teleport
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void EnableModeTeleport()
-    {
-        uIplayerController.ToggleTextTeleport(true);
+    public void EnableModeTeleport () {
+        uIplayerController.ToggleTextTeleport (true);
         _state = PlayerStates.Teleport;
     }
 
-    public void DisableModeTeleport()
-    {
-        uIplayerController.ToggleTextTeleport(false);
+    public void DisableModeTeleport () {
+        uIplayerController.ToggleTextTeleport (false);
         _state = PlayerStates.Idle;
     }
 
@@ -450,20 +396,18 @@ public class PlayerController : MonoBehaviour
     // Player Movement Character Controller
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    private void moveAxes()
-    {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+    private void moveAxes () {
+        float x = Input.GetAxis ("Horizontal");
+        float z = Input.GetAxis ("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        characterController.Move(move * speed * Time.deltaTime);
+        characterController.Move (move * speed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
 
-        characterController.Move(velocity * Time.deltaTime);
+        characterController.Move (velocity * Time.deltaTime);
 
-        
     }
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -471,51 +415,42 @@ public class PlayerController : MonoBehaviour
     // Gravity
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    private void gravityAction()
-    {
-        _isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundLayer);
+    private void gravityAction () {
+        _isGrounded = Physics.CheckSphere (groundChecker.position, groundDistance, groundLayer);
 
-        if (_isGrounded && velocity.y < 0)
-        {
+        if (_isGrounded && velocity.y < 0) {
             velocity.y = -2f;
         }
 
     }
     //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void OnTriggerEnter(Collider col)
-    {
+    void OnTriggerEnter (Collider col) {
         //Debug.Log("ON TRIGGER ENTER");
 
-        if (col.gameObject.tag == "Torch")
-        {
-            if (holdingTorch == false)
-            {
+        if (col.gameObject.tag == "Torch") {
+            if (holdingTorch == false) {
                 // if we don't hold anything
                 _torch = col.gameObject;
             }
         }
 
-        if (col.gameObject.tag == "Caliz")
-        {
+        if (col.gameObject.tag == "Caliz") {
             _caliz = col.gameObject;
         }
 
     }
 
-    void OnTriggerExit(Collider col)
-    {
+    void OnTriggerExit (Collider col) {
         //Debug.Log("ON TRIGGER EXIT");
 
-        if (col.gameObject.tag == "Torch")
-        {
+        if (col.gameObject.tag == "Torch") {
 
             _torch = null;
 
         }
 
-        if (col.gameObject.tag == "Caliz")
-        {
+        if (col.gameObject.tag == "Caliz") {
 
             _caliz = null;
 
