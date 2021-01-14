@@ -210,24 +210,30 @@ public class PlayerController : MonoBehaviour {
 
         // UI
         if (_state == PlayerStates.UI) {
-            if (Input.GetKeyDown (KeyCode.Joystick1Button0)) { }
+
+            // Play
             if (Input.GetKeyDown (KeyCode.Joystick1Button1)) {
                 GameManager.LoadSceneAsync ("Temple1");
             }
-            if (Input.GetKeyDown (KeyCode.Joystick1Button2)) {
+
+            // Video
+            if (Input.GetKeyDown (KeyCode.Joystick1Button0)) {
                 GameManager.LoadSceneAsync ("Video360");
             }
+
+            // Help
+            if (Input.GetKeyDown (KeyCode.Joystick1Button2)) { }
+
+            // Quit
             if (Input.GetKeyDown (KeyCode.Joystick1Button3)) {
                 Application.Quit ();
             }
-
         }
 
         // EnterDoor
         if (Input.GetKeyDown (KeyCode.Joystick1Button0) && _state == PlayerStates.EnterDoor) {
             // Load random scene
             GameManager.LoadRandomScene ();
-
         }
 
         // Instrucctions
