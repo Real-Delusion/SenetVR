@@ -70,10 +70,6 @@ public class PlayerController : MonoBehaviour {
     private LayerMask groundLayer;
     private bool _isGrounded;
 
-    // UI Click
-    private bool _introEstadoAnterior = false;
-    private bool _introActivarClick = false;
-
     // -------------------------------- PlayerStates -----------------------------------
     public enum PlayerStates {
         Idle,
