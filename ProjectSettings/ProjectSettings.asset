@@ -422,6 +422,10 @@ PlayerSettings:
     m_Enabled: 0
     m_Devices:
     - cardboard
+  - m_BuildTarget: Standalone
+    m_Enabled: 0
+    m_Devices:
+    - cardboard
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
@@ -674,7 +678,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: VIU_OPENVR_API;VIU_STEAMVR;VIU_STEAMVR_1_1_1;VIU_STEAMVR_1_2_0_OR_NEWER;VIU_STEAMVR_1_2_1_OR_NEWER;VIU_STEAMVR_1_2_2_OR_NEWER;VIU_STEAMVR_1_2_3_OR_NEWER;VIU_STEAMVR_2_0_0_OR_NEWER;VIU_STEAMVR_2_1_0_OR_NEWER;VIU_STEAMVR_2_2_0_OR_NEWER;VIU_STEAMVR_2_4_0_OR_NEWER;VIU_STEAMVR_2_6_0_OR_NEWER;VIU_XR_GENERAL_SETTINGS;VIU_XR_PACKAGE_METADATA_STORE;VIU_PLUGIN;VIU_OPENVR_SUPPORT;VIU_SIUMULATOR_SUPPORT
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
