@@ -1907,7 +1907,7 @@ PrefabInstance:
     - target: {fileID: 2453403982828926570, guid: bae3fdb7767fc472ab8259cf11555954,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.115
+      value: -0.37
       objectReference: {fileID: 0}
     - target: {fileID: 2453403982828926570, guid: bae3fdb7767fc472ab8259cf11555954,
         type: 3}
@@ -1963,6 +1963,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3062136932590106377, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
