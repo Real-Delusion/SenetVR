@@ -15,4 +15,24 @@ public class UiMainMenuManager : MonoBehaviour
     {
         
     }
+
+    public void GoToMainMenu()
+    {
+        GameManager.instance.levelManager.goMainScreen();
+    }
+
+    public void GoToTemple1() 
+    { 
+        GameManager.LoadSceneAsync("Temple1");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ChargeVideo360()
+    {
+
+    }
 }

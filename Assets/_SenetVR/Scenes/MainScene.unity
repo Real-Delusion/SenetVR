@@ -167,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27854396}
+  - component: {fileID: 27854397}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -190,6 +191,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &27854397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27854395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a68124883e7d5542abb2f998612b764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &45371939
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +955,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 488857256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 27854397}
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &488857256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,7 +1232,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 581629537}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 27854397}
+        m_MethodName: GoToTemple1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &581629537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,7 +1362,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 591789753}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 27854397}
+        m_MethodName: ChargeVideo360
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &591789753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3860,7 +3906,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990716373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 27854395}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1990716373
 MonoBehaviour:
   m_ObjectHideFlags: 0
