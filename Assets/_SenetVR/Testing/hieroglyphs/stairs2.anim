@@ -39,7 +39,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail
+    path: DoorLights/LightTrail1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -64,7 +64,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (1)
+    path: DoorLights/LightTrail2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -89,7 +89,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (2)
+    path: DoorLights/LightTrail3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -114,7 +114,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (3)
+    path: DoorLights/LightTrail4
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -139,7 +139,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (4)
+    path: DoorLights/LightTrail5
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -164,7 +164,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (5)
+    path: DoorLights/LightTrail6
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -189,7 +189,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (6)
+    path: DoorLights/LightTrail7
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -214,7 +214,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: DoorLights/LightTrail (7)
+    path: DoorLights/LightTrail8
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -226,56 +226,56 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1426324841
+      path: 3085383094
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4174992918
+      path: 787375116
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3555984853
+      path: 1508463770
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3404674196
+      path: 3347956025
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2242814547
+      path: 2961895855
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2629145362
+      path: 696492053
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3080241361
+      path: 1585746051
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2927882640
+      path: 3460009234
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -328,7 +328,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail
+    path: DoorLights/LightTrail1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -356,7 +356,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail
+    path: DoorLights/LightTrail1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -384,7 +384,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail
+    path: DoorLights/LightTrail1
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -412,7 +412,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (1)
+    path: DoorLights/LightTrail2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -440,7 +440,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (1)
+    path: DoorLights/LightTrail2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -468,7 +468,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (1)
+    path: DoorLights/LightTrail2
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -496,7 +496,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (2)
+    path: DoorLights/LightTrail3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -524,7 +524,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (2)
+    path: DoorLights/LightTrail3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -552,7 +552,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (2)
+    path: DoorLights/LightTrail3
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -580,7 +580,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (3)
+    path: DoorLights/LightTrail4
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -608,7 +608,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (3)
+    path: DoorLights/LightTrail4
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -636,7 +636,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (3)
+    path: DoorLights/LightTrail4
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -664,7 +664,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (4)
+    path: DoorLights/LightTrail5
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -692,7 +692,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (4)
+    path: DoorLights/LightTrail5
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -720,7 +720,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (4)
+    path: DoorLights/LightTrail5
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -748,7 +748,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (5)
+    path: DoorLights/LightTrail6
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -776,7 +776,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (5)
+    path: DoorLights/LightTrail6
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -804,7 +804,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (5)
+    path: DoorLights/LightTrail6
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -832,7 +832,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (6)
+    path: DoorLights/LightTrail7
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -860,7 +860,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (6)
+    path: DoorLights/LightTrail7
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -888,7 +888,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (6)
+    path: DoorLights/LightTrail7
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -916,7 +916,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: DoorLights/LightTrail (7)
+    path: DoorLights/LightTrail8
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -944,7 +944,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: DoorLights/LightTrail (7)
+    path: DoorLights/LightTrail8
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -972,7 +972,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: DoorLights/LightTrail (7)
+    path: DoorLights/LightTrail8
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []
