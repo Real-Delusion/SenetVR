@@ -12,7 +12,6 @@ public class LightingCalices : MonoBehaviour
 
     private GameObject door;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +22,7 @@ public class LightingCalices : MonoBehaviour
     void Update()
     {
         // Checking if the fire of the caliz activator is enabled to start the epic lighting
-        if (activator.transform.GetChild(1).gameObject.activeInHierarchy == enabled)
+        if (activator.transform.GetChild(1).gameObject.activeInHierarchy == enabled && calices[0].transform.GetChild(1).gameObject.activeInHierarchy == false)
         {
             StartLightingCalices();
         }
@@ -50,14 +49,17 @@ public class LightingCalices : MonoBehaviour
                 // Setting active the fire of the caliz
                 calices[i].transform.GetChild(1).gameObject.SetActive(true);
 
+               calices[i].transform.GetChild(2).gameObject.SetActive(true);
+
             }
 
-            if(i == calices.Count - 1)
+            if (i == calices.Count - 1)
             {
                 // Activating door when the last calices are lighted
                 StartCoroutine(ActivateDoor(seconds));
 
             }
+
 
         }
 
@@ -75,7 +77,5 @@ public class LightingCalices : MonoBehaviour
 
 
     }
-
-
 
 }

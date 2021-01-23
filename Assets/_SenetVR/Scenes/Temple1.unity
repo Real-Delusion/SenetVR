@@ -1492,6 +1492,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activator: {fileID: 863477182}
+  doorGlowMaterial: {fileID: 2100000, guid: 00b0f02522cb14afe88e3d518cb89c7e, type: 2}
+  waitValue: 1.5
   calices:
   - {fileID: 1894002637}
   - {fileID: 835583910}
@@ -1501,7 +1503,6 @@ MonoBehaviour:
   - {fileID: 1274435153}
   - {fileID: 1162916409}
   - {fileID: 326080617}
-  waitValue: 1.5
 --- !u!4 &876045829
 Transform:
   m_ObjectHideFlags: 0
