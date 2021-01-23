@@ -90,19 +90,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Observing");
 
-            // Disable player controls (Player --> ViveCameraRig --> Camera
-            //camera.gameObject.GetComponent<TrackedPoseDriver>().enabled = false;
-
-            // Zoom in to the jeroglificos
-            float minFov = 50f;
-            float maxFov = 80f;
-            float sensitivity = 10f;
-
-            transform.LookAt(target);
-            /*float fov = camera.fieldOfView;
-            fov -= Time.deltaTime * sensitivity;
-            fov = Mathf.Clamp(fov, minFov, maxFov);
-            camera.fieldOfView = fov;*/
+            // Cool glow made by Rosa
 
         }
     }
