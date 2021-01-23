@@ -467,6 +467,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 414468134}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &326080617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 749050480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &329967688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -533,6 +539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
@@ -603,6 +614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: caliz (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
 --- !u!1001 &414468134
@@ -672,6 +688,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: caliz (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
 --- !u!1001 &474888704
@@ -740,6 +761,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
@@ -858,6 +884,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &577764739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 474888704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &578041355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1069,8 +1101,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: caliz (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
+--- !u!1 &731743889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 363933168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &749050480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1137,6 +1180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
@@ -1357,8 +1405,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: caliz (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
+--- !u!1 &810796003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 718852066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &835583910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 2105041833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &855506971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1456,66 @@ Transform:
   m_Father: {fileID: 18942160}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &863477182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 1433376601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &876045827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876045829}
+  - component: {fileID: 876045828}
+  m_Layer: 0
+  m_Name: EpicLightingCalices
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &876045828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876045827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ac12ad967324a11872321640397215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activator: {fileID: 863477182}
+  calices:
+  - {fileID: 1894002637}
+  - {fileID: 835583910}
+  - {fileID: 577764739}
+  - {fileID: 810796003}
+  - {fileID: 731743889}
+  - {fileID: 1274435153}
+  - {fileID: 1162916409}
+  - {fileID: 326080617}
+  waitValue: 1.5
+--- !u!4 &876045829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876045827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.597777, y: -2.408286, z: 1.6051593}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &986617473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7591128604708966927, guid: df0580133887f486da6e51482e69ec30,
@@ -1408,6 +1533,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3371108231701332548, guid: 396c404197ffc4dde926b8bdd5a767f3,
     type: 3}
   m_PrefabInstance: {fileID: 1916348866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1162916409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 414468134}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1221277251
 GameObject:
@@ -1451,6 +1582,12 @@ Transform:
 --- !u!4 &1263095620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2453403982828926570, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 795888035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1274435153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
     type: 3}
   m_PrefabInstance: {fileID: 795888035}
   m_PrefabAsset: {fileID: 0}
@@ -1595,6 +1732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
@@ -1936,6 +2078,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df0580133887f486da6e51482e69ec30, type: 3}
+--- !u!1 &1894002637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2974606942023691472, guid: bae3fdb7767fc472ab8259cf11555954,
+    type: 3}
+  m_PrefabInstance: {fileID: 329967688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1897986714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2509,6 +2657,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: caliz (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464373673945506145, guid: bae3fdb7767fc472ab8259cf11555954,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae3fdb7767fc472ab8259cf11555954, type: 3}
