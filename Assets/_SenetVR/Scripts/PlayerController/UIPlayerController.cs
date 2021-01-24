@@ -11,7 +11,6 @@ public class UIPlayerController : MonoBehaviour
     [Header("Elements GUI")]
     public GameObject canvas;
     public Image slicedPanel;
-    public GameObject optionsPanel;
     public GameObject exitPanel;
     // ----------------------------------------------------------------------------------
     // Properties
@@ -31,9 +30,8 @@ public class UIPlayerController : MonoBehaviour
     void Start()
     {
         // Initial set up
-        canvas.SetActive(false);
+        // canvas.SetActive(false);
         slicedPanel.GetComponent<Image>().fillAmount = 0f;
-        optionsPanel.transform.DOScale(0f, 0f);
         exitPanel.transform.DOScale(0f, 0f);
     }
 
@@ -56,35 +54,18 @@ public class UIPlayerController : MonoBehaviour
             DOTweenModuleUI.DOFillAmount(slicedPanel.GetComponent<Image>(), 0f, 1f);
         }
     }
-
-    public void ToggleOptionsPanel(bool state)
-    {
-        ToggleSlicedPanel(state);
-        ToggleExitPanel(false);
-
-        if (state)
-        {
-            optionsPanel.transform.DOScale(1f, 1f);
-        }
-        else
-        {
-            optionsPanel.transform.DOScale(0f, 1f);
-        }
-    }
     
     public void ToggleExitPanel(bool state)
     {
         ToggleSlicedPanel(state);
 
-        ToggleOptionsPanel(false);
-
         if (state)
         {
-            exitPanel.transform.DOScale(1f, 1f);
+            exitPanel.transform.DOScale(1f, 2f);
         }
         else
         {
-            exitPanel.transform.DOScale(0f, 1f);
+            exitPanel.transform.DOScale(0f, 2f);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SpatialTracking;
+using HTC.UnityPlugin.Vive;
 
 
 public class PlayerController : MonoBehaviour
@@ -87,10 +88,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        /*if (Input.GetButtonDown("")
         {
             UIPlayerController.ToggleGUI(!UIPlayerController.StateGUI);
-        }
+        }*/
     }
 
     // Update is called once per frame
