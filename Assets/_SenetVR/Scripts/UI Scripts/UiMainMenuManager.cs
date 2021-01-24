@@ -28,7 +28,7 @@ public class UiMainMenuManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        GameManager.instance.levelManager.ExitGame();
     }
 
     public void ChargeVideo360()
