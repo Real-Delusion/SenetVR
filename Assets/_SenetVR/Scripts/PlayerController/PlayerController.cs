@@ -13,9 +13,7 @@ public class PlayerController : MonoBehaviour
     // ----------------------------------------------------------------------------------
     [Header("Scripts")]
     [SerializeField]
-    private UIPlayerController UIPlayerController;
-    [SerializeField]
-    private InstructionsUI instructionsUI;
+    private UIPlayerController _uiPlayerController;
     // ----------------------------------------------------------------------------------
 
 
@@ -82,16 +80,16 @@ public class PlayerController : MonoBehaviour
     // ---------------------------------------------------------------------------------
     void Start()
     {
-        UIPlayerController = GetComponent<UIPlayerController>();
+        _uiPlayerController = GetComponent<UIPlayerController>();
 
     }
 
     private void Update()
     {
-        /*if (Input.GetButtonDown("")
+        if (Input.GetButtonDown("HTC_VIU_UnityAxis1"))
         {
-            UIPlayerController.ToggleGUI(!UIPlayerController.StateGUI);
-        }*/
+            _uiPlayerController.ToggleGUI(!_uiPlayerController.StateGUI);
+        }
     }
 
     // Update is called once per frame
