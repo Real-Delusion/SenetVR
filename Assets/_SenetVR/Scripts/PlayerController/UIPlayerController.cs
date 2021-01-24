@@ -38,9 +38,11 @@ public class UIPlayerController : MonoBehaviour
     // ----------------------------------------------------------------------------------
     // Methods
     // ----------------------------------------------------------------------------------
-    public void ToggleGUI(bool state)
+    public void ToggleGUI()
     {
-        if (state)
+        StateGUI = !StateGUI;
+
+        if (StateGUI)
         {
             canvas.transform.DOScale(0.0003f, .75f);
         }
