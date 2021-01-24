@@ -30,7 +30,7 @@ public class UIPlayerController : MonoBehaviour
     void Start()
     {
         // Initial set up
-        canvas.SetActive(false);
+        canvas.transform.DOScale(0f, 0f);
         slicedPanel.GetComponent<Image>().fillAmount = 0f;
         exitPanel.transform.DOScale(0f, 0f);
     }
@@ -40,7 +40,14 @@ public class UIPlayerController : MonoBehaviour
     // ----------------------------------------------------------------------------------
     public void ToggleGUI(bool state)
     {
-        canvas.SetActive(state);
+        if (state)
+        {
+            canvas.transform.DOScale(0.0003f, .75f);
+        }
+        else
+        {
+            canvas.transform.DOScale(0f, .75f);
+        }
     }
 
     void ToggleSlicedPanel(bool state)
