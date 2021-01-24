@@ -22,7 +22,7 @@ public class Jeroglificos : MonoBehaviour {
             // Insert cool glow animation around the jeroglifico
             lightsAnim.SetTrigger ("Hieroglyphs");
 
-            //lightsAnim.ResetTrigger ("Hieroglyphs");
+            this.GetComponent<AudioSource>().Play();
         }
     }
 }
