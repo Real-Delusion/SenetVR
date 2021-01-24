@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3671,12 +3671,17 @@ PrefabInstance:
     - target: {fileID: 3911537721807337849, guid: 0798ec7c3f1924be687e881494b42cb7,
         type: 3}
       propertyPath: Priority
-      value: 168
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3911537721807337849, guid: 0798ec7c3f1924be687e881494b42cb7,
         type: 3}
       propertyPath: Loop
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911537721807337849, guid: 0798ec7c3f1924be687e881494b42cb7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940178800266529952, guid: 0798ec7c3f1924be687e881494b42cb7,
         type: 3}
