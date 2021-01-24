@@ -75,6 +75,8 @@ public class LightingCalices : MonoBehaviour
         // Changing door-basic material to door-glow material
         door.GetComponent<MeshRenderer>().material = doorGlowMaterial;
 
+        door.GetComponent<AudioSource>().enabled = true;
+
 
     }
 
