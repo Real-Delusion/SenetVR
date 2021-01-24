@@ -35,4 +35,9 @@ public class UiMainMenuManager : MonoBehaviour
     {
 
     }
+
+    public void GoFallas()
+    {
+        GameManager.LoadSceneAsync("Fallas");
+    }
 }
