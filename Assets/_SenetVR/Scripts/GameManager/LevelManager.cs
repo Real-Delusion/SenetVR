@@ -62,4 +62,9 @@ public class LevelManager : MonoBehaviour
     {
         GameManager.LoadSceneAsync(GameManager.instance.levelManager.MainMenu);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
