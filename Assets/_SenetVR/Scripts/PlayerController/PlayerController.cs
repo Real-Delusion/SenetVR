@@ -7,15 +7,15 @@ using UnityEngine.SpatialTracking;
 
 public class PlayerController : MonoBehaviour
 {
-
+    // ----------------------------------------------------------------------------------
     // Scripts
+    // ----------------------------------------------------------------------------------
     [Header("Scripts")]
     [SerializeField]
     private UIPlayerController UIPlayerController;
     [SerializeField]
     private InstructionsUI instructionsUI;
-    public Transform target;
-    public Camera camera;
+    // ----------------------------------------------------------------------------------
 
 
 
@@ -75,11 +75,22 @@ public class PlayerController : MonoBehaviour
     }
     // -------------------------------- PlayerStates -----------------------------------
 
-    // Start is called before the first frame update
+
+    // ---------------------------------------------------------------------------------
+    // Runetime Sequence
+    // ---------------------------------------------------------------------------------
     void Start()
     {
         UIPlayerController = GetComponent<UIPlayerController>();
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            UIPlayerController.ToggleGUI(!UIPlayerController.StateGUI);
+        }
     }
 
     // Update is called once per frame
@@ -91,12 +102,26 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Observing");
 
             // Cool glow made by Rosa
-
         }
     }
+    // ---------------------------------------------------------------------------------
 
     public void Observe()
     {
         _state = PlayerStates.Observing;
+    }
+
+    // ---------------------------------------------------------------------------------
+    // LevelsChanges
+    // ---------------------------------------------------------------------------------
+
+    public void ChangeScene(string sceneName)
+    {
+        GameManager.LoadSceneAsync(sceneName);
+    }
+
+    public void ExitGame()
+    {
+        GameManager.instance.levelManager.ExitGame();
     }
 }
