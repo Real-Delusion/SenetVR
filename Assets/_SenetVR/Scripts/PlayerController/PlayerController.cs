@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("HTC_VIU_UnityAxis1"))
         {
-            _uiPlayerController.ToggleGUI(!_uiPlayerController.StateGUI);
+            _uiPlayerController.ToggleGUI();
         }
     }
 
