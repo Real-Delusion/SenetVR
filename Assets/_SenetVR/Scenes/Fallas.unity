@@ -3693,6 +3693,16 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 1bc434096801b48088591c349ee5b0be, type: 3}
+    - target: {fileID: 4940178800266529952, guid: 0798ec7c3f1924be687e881494b42cb7,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940178800266529952, guid: 0798ec7c3f1924be687e881494b42cb7,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5381988529658264930, guid: 0798ec7c3f1924be687e881494b42cb7,
         type: 3}
       propertyPath: m_IsActive
