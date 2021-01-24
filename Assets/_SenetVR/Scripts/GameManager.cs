@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         string scenePrefix = "Temple";
 
         // Add
-        for (int i = 1; i < 4; i++)
+        for (int i = 2; i < 4; i++)
         {
             string scene = scenePrefix + i;
             
