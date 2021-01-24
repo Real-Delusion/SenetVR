@@ -30,7 +30,7 @@ public class UIPlayerController : MonoBehaviour
     void Start()
     {
         // Initial set up
-        // canvas.SetActive(false);
+        canvas.SetActive(false);
         slicedPanel.GetComponent<Image>().fillAmount = 0f;
         exitPanel.transform.DOScale(0f, 0f);
     }
