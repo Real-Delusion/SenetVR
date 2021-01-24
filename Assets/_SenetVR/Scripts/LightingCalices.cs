@@ -30,6 +30,7 @@ public class LightingCalices : MonoBehaviour
 
     public void StartLightingCalices()
     {
+        this.GetComponent<AudioSource>().enabled = true;
         StartCoroutine(LightCalices(waitValue));
     }
 
