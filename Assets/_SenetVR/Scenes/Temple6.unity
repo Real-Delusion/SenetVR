@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -195,6 +195,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7378790747221441212, guid: ab4ad5d2b569846fb8b848f688baa2be,
     type: 3}
   m_PrefabInstance: {fileID: 16572605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &36048899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4789284056426753154, guid: 801a0465c670cdd49a42794d42e1008d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1319737489}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &84519187
 PrefabInstance:
@@ -374,6 +380,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 752f59325071a41fdb91f0af5a47a5c1, type: 3}
+--- !u!1 &196677448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9115768011440185695, guid: f097030fe4d4c40f6b9a58b8af713d9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1879963461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &196677449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196677448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f753025abc16bb45bbc83939f863bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1081130582}
+  pivot: {fileID: 36048899}
+  fadeDuration: 0.3
+  primaryTeleportButton: 0
+  secondaryTeleportButton: 2
+  _teleportButton: 1
+  triggeredType: 0
+  m_reticleMaterial: {fileID: 2100000, guid: 3320905fb6f6bd54297f26399d87c525, type: 2}
+  rotateToHitObjectFront: 0
+  teleportToHitObjectPivot: 0
+  useSteamVRFade: 1
+  onBeforeTeleport:
+    m_PersistentCalls:
+      m_Calls: []
+  onAfterTeleport:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &299685696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1440,6 +1481,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2453403982828926570, guid: bae3fdb7767fc472ab8259cf11555954,
     type: 3}
   m_PrefabInstance: {fileID: 1034487146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1081130582 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4789284054519854884, guid: 801a0465c670cdd49a42794d42e1008d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1319737489}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1116127017
 PrefabInstance:
@@ -2872,6 +2919,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 148005980426769911, guid: f097030fe4d4c40f6b9a58b8af713d9d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775134072051254778, guid: f097030fe4d4c40f6b9a58b8af713d9d,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8487708705737063397, guid: f097030fe4d4c40f6b9a58b8af713d9d,
         type: 3}
       propertyPath: m_LocalPosition.x
