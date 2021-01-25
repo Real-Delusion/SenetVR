@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/_SenetVR/Scenes/Temple11.unity
     guid: 3c3d23146485f4faaba5507f4800625d
   - enabled: 1
+    path: Assets/_SenetVR/Scenes/Temple12.unity
+    guid: cfb1ddbc663eac54aa0d35184fc24a56
+  - enabled: 1
     path: Assets/_SenetVR/Scenes/Fallas.unity
     guid: 32a04ac6b9b7e4ff8b68e513a6f7f3f3
   - enabled: 1
