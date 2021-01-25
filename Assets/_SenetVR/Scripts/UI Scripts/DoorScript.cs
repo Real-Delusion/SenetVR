@@ -20,4 +20,11 @@ public class DoorScript : MonoBehaviour
     {
         GameManager.LoadRandomScene();
     }
+
+    public void loadMainScene()
+    {
+        GameManager.LoadSceneAsync("MainScene");
+    }
+
+
 }
