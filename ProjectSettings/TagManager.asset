@@ -9,7 +9,6 @@ TagManager:
   - Instructions
   - Flame
   - Jeroglificos
-  - PostProcessing
   layers:
   - Default
   - TransparentFX
