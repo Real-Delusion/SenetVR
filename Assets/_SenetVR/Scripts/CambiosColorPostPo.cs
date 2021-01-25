@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using DG.Tweening;
+
 
 public class CambiosColorPostPo : MonoBehaviour
 {
@@ -32,6 +34,6 @@ public class CambiosColorPostPo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        _colorAdjustments.hueShift.value = Mathf.Sin(Time.deltaTime);
     }
 }
