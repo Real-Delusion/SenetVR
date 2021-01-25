@@ -7,6 +7,8 @@ TagManager:
   - Torch
   - Caliz
   - Instructions
+  - Flame
+  - Jeroglificos
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - PostProcessing
   - 
   - 
   - 
