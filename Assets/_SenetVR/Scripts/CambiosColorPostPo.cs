@@ -34,6 +34,8 @@ public class CambiosColorPostPo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _colorAdjustments.hueShift.value = Mathf.Sin(Time.deltaTime);
+        _colorAdjustments.hueShift.value = Mathf.Sin(Time.realtimeSinceStartup) * 180f;
+
+        Debug.Log(Mathf.Sin(Time.realtimeSinceStartup) * 180f * Time.deltaTime);
     }
 }
