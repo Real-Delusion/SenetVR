@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if ("Temple12" == SceneManager.GetActiveScene().name)
+        {
+        }
     }
 
     //-----------------------------------------------------------------------------------------------
@@ -94,7 +97,7 @@ public class GameManager : MonoBehaviour
         string scenePrefix = "Temple";
 
         // Add
-        for (int i = 2; i <= 11; i++)
+        for (int i = 2; i <= 12; i++)
         {
             string scene = scenePrefix + i;
             
