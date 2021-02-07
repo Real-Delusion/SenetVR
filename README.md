@@ -1,3 +1,11 @@
+```diff 
+- WARNING
+```
+
+Due to lack of resources, the repository with updates is in GitLab:
+
+Link: (https://gitlab.com/real-delusion/senet-ar-vr/Senet-VR)
+
 # SENET VR
 
 _Project for the Advanced Interactive Environments Project_
@@ -18,9 +26,3 @@ _VR experience in Unity for Senet's game_
 - **Platform:** 
 
     Unity
-
-_Warning_
-
-Due to lack of resources, the repository with updates is in GitLab:
-
-Link: (https://gitlab.com/real-delusion/senet-ar-vr/Senet-VR)
