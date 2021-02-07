@@ -21,6 +21,6 @@ _VR experience in Unity for Senet's game_
 
 _Warning_
 
-Due to lack of resources, the repository with updates is in GitLab
+Due to lack of resources, the repository with updates is in GitLab:
 
 Link: (https://gitlab.com/real-delusion/senet-ar-vr/Senet-VR)
